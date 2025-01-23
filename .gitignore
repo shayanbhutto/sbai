@@ -1,0 +1,15 @@
+# Ignore build and distribution directories
+dist/
+build/
+*.egg-info/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment-specific files
+.DS_Store
+.env
+venv/
