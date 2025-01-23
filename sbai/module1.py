@@ -2,7 +2,7 @@ from openai import OpenAI
 import google.generativeai as genai
 
 class ChatGPT:
-    def __init__(self, api_key, model="gpt-4o-mini", temperature=0, top_p=0, instructions="", max_token=200, memory=False):
+    def __init__(self, api_key, model="gpt-4o-mini", temperature=0, top_p=0, instructions="", max_token=200, memory=False, memory_limit=5):
         self.api_key = api_key
         self.model = model
         self.temperature = temperature
@@ -10,6 +10,7 @@ class ChatGPT:
         self.instructions = instructions
         self.max_token = max_token
         self.memory = memory
+        self.memory_limit = memory_limit
         self.history = []
         self.client = OpenAI(api_key=self.api_key)
 
@@ -40,7 +41,7 @@ class ChatGPT:
             return str(e)
 
     def add_to_history(self, message):
-        if len(self.history) >= 5:
+        if len(self.history) >= self.memory_limit:
             self.history.pop(0)
         self.history.append(message)
 
